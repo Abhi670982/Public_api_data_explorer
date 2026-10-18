@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public API Data Explorer</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f3f6fb;
+        padding: 30px;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background: #eaf1ff;
+      }
+
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Public API Data Explorer</h1>
+      <p>Users fetched from a public API</p>
+
+      {% if error %}
+      <p class="error">{{ error }}</p>
+      {% else %}
+      <p>Total users: {{ users|length }}</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Website</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Zip Code</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <td>{{ user.Name }}</td>
+            <td>{{ user.Username }}</td>
+            <td>{{ user.Email }}</td>
+            <td>{{ user.Phone }}</td>
+            <td>{{ user.Website }}</td>
+            <td>{{ user.Street }}</td>
+            <td>{{ user.City }}</td>
+            <td>{{ user.Zipcode }}</td>
+            <td>{{ user.Company }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="11">No data available.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endif %}
+    </div>
+    <div>
+      <a href="{% url 'export_csv' %}">
+        <button type="button">Download CSV</button>
+      </a>
+
+      <a href="{% url 'export_excel' %}">
+        <button type="button">Download Excel</button>
+      </a>
+    </div>
+  </body>
+</html>
