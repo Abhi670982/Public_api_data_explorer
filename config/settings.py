@@ -40,17 +40,20 @@ INSTALLED_APPS = [
     'explorer',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+MIDDLEWARE = [ #the request passes through middleware at step 3, after HTTP request travels to Django Host, path , method, & headers
+              
+    'django.middleware.security.SecurityMiddleware',  #Applies security realted behaivour on requests and respsonses
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.middleware.common.CommonMiddleware', #Handles common HTTP behavior, such as URL normalization and certain response headers. 
+    'django.middleware.csrf.CsrfViewMiddleware', #Performs CSRF checks for requests covered by its rules, particularly relevant to unsafe requests such as POST
+    'django.contrib.auth.middleware.AuthenticationMiddleware', #When configured, these make session and user information available to the application.
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    "explorer.middleware.SimpleCustomMiddleware"
 ]
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'config.urls'   #
 
 TEMPLATES = [
     {

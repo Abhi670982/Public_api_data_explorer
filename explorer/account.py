@@ -31,3 +31,5 @@ def validate_email(email):
 
     return re.match(pattern, email) is not None
  
+ 
+#  validate function test karne ke liye : python manage.py shell

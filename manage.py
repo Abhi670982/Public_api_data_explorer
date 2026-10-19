@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+
+# Ye project ke root mein hoti hai. Iska use development server start karne, migrations chalane aur tests execute karne ke liye hota hai.
+
 import os
 import sys
 
